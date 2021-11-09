@@ -87,8 +87,8 @@ int main(int argc, char *argv[])
 
     while(boolean)
     {
-        printf("Options: 1. ADD PEOPLE\t 2. DELETE PEOPLE\t 3. SHOW ALL\t 4. SHOW CORRESPONDING\t 5. QUIT\nEnter Number: ");
-        scanf("%d", &command); //User inputs 1-5
+        printf("Options: 1. ADD PEOPLE\t2. DELETE PEOPLE\t3. SHOW ALL\t4. SHOW CORRESPONDING\t5. READ BINARY FILE\t6. QUIT\nEnter Number: ");
+        scanf("%d", &command); //User inputs 1-6
 
         switch (command)
         {
@@ -104,10 +104,12 @@ int main(int argc, char *argv[])
             case 4: //Show the corresponding list
                 show_letter();
                 break;
-            case 5: //Quit
+            case 5:
+                break;
+            case 6: //Quit
                 boolean = 0;
                 break;
-            default: //If any number other than 1-5 is inputted
+            default: //If any number other than 1-6 is inputted
                 printf("Not a valid option. Try again.\n");
                 break;
         }
