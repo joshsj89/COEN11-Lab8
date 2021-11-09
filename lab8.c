@@ -74,9 +74,9 @@ int main(int argc, char *argv[])
         listsTail[i] = NULL;
     }
     
-    if (argc == 1) //If no file name was given as an argument
+    if (argc <= 2) //If a file name isn't given as an argument
     {
-        printf("The name of the file is missing.\n");
+        printf("The names of the text file and/or binary files are missing.\n");
         return 0;
     }
     else
