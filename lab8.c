@@ -55,6 +55,8 @@ void show(); //Function declaration of Show All
 void show_letter(); //Function declaration of Show Corresponding
 void read_file(char *name); //Function declaration of Read File
 void save_file(char *name); //Function declaration of Save File
+void read_binary(char *name); //Function declaration of Read Binary File
+void save_binary(char *name); //Function declaration of Save Binary File
 
 /*
 *****************************************************************
@@ -105,6 +107,7 @@ int main(int argc, char *argv[])
                 show_letter();
                 break;
             case 5:
+                //read_binary(argv[2]);
                 break;
             case 6: //Quit
                 boolean = 0;
@@ -116,6 +119,7 @@ int main(int argc, char *argv[])
     }
 
     save_file(argv[1]);
+    save_binary(argv[2]);
     
     free(lists[i-1]); //Deallocates the linked list
 }
@@ -385,7 +389,6 @@ void save_file(char *name) //Save File function
        printf("The file cannot be saved.\n");
        return; 
     }
-
     
     fprintf(fp, "%s" , fileHeader); //Print the header to the file
 
@@ -398,6 +401,52 @@ void save_file(char *name) //Save File function
         {
             fprintf(fp, "%s\t%s\n", p->name, p->number);
             p = p->next;
+        }
+    }
+
+    fclose(fp); //Closes file pointer
+}
+/*
+void read_binary(char *name) //Read Binary File function
+{
+    FILE *fp; //File pointer
+    int ret;
+    NODE *buffer[100];
+
+    fp = fopen(name, "rb"); //Reading the file
+
+    if (fp == NULL) //The file does not exist and will be created upon save
+        return;
+
+    while ((ret = fread(*buffer, sizeof(NODE *), 100, fp)) > 0)
+    {
+        int i;
+        for (i = 0; i < ret; ++i)
+
+    }
+
+    fclose(fp); //Closes file pointer
+}
+*/
+void save_binary(char *name) //Save Binary File function
+{
+    FILE *fp; //File pointer
+    NODE *p[SIZE];
+    int letterIndex, ret;
+
+    fp = fopen(name, "wb"); //Writing to the file (overwriting)
+
+    if (fp == NULL) //If file does not exist
+    {
+       printf("The file cannot be saved.\n");
+       return; 
+    }
+
+    if ((ret = fwrite(p, sizeof(NODE *), SIZE, fp)) > 0)
+    {
+        for (letterIndex = 0; letterIndex < ret; ++letterIndex)
+        {
+            p[letterIndex] = lists[letterIndex];
         }
     }
 
