@@ -167,7 +167,7 @@ void characterInsert(char newName[20], char newNumber[20])
         return;
     }
     
-    else if (strcmp(temp->name, new_node->name) > 0) //If the inputted name comes before the first name on the list
+    else if (strcasecmp(temp->name, new_node->name) > 0) //If the inputted name comes before the first name on the list
     {
         new_node->next = lists[letterIndex]; //Makes the new node point to the first on the list
         new_node->prev = NULL; //Makes the new node point back to NULL
@@ -176,10 +176,10 @@ void characterInsert(char newName[20], char newNumber[20])
         return;
     }
     
-    while (temp->next != NULL && (strcmp(temp->name, new_node->name) < 0)) //Continues to the next node when the inputted name comes after the first name on list and is not the last node
+    while (temp->next != NULL && (strcasecmp(temp->name, new_node->name) < 0)) //Continues to the next node when the inputted name comes after the first name on list and is not the last node
             temp = temp->next; //Moves a pointer down the list
     
-    if (temp->next == NULL && strcmp(temp->name, new_node->name) != 0) //If the new node will be the tail and is not a duplicate
+    if (temp->next == NULL && strcasecmp(temp->name, new_node->name) != 0) //If the new node will be the tail and is not a duplicate
     {
         new_node->next = temp->next;
         new_node->prev = listsTail[letterIndex];
@@ -188,7 +188,7 @@ void characterInsert(char newName[20], char newNumber[20])
         return;
     }
 
-    else if (strcmp(temp->name, new_node->name) > 0) //If the inputted name comes before the name being checked
+    else if (strcasecmp(temp->name, new_node->name) > 0) //If the inputted name comes before the name being checked
     {
         new_node->next = temp;
         new_node->prev = temp->prev;
@@ -197,7 +197,7 @@ void characterInsert(char newName[20], char newNumber[20])
         return;
     } //Puts the new node in between temp and the one before temp
     
-    else if (temp != NULL && (strcmp(newName, temp->name) == 0)) //If the inputted name is already on the list
+    else if (temp != NULL && (strcasecmp(newName, temp->name) == 0)) //If the inputted name is already on the list
     {
         printf("Sorry, this name and/or number is already in the phonebook.\n");
         return;
