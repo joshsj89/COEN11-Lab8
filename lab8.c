@@ -89,8 +89,8 @@ int main(int argc, char *argv[])
 
     while(boolean)
     {
-        printf("Options: 1. ADD PEOPLE\t2. DELETE PEOPLE\t3. SHOW ALL\t4. SHOW CORRESPONDING\t5. READ BINARY FILE\t6. QUIT\nEnter Number: ");
-        scanf("%d", &command); //User inputs 1-6
+        printf("Options: 1. ADD PEOPLE\t2. DELETE PEOPLE\t3. SHOW ALL\t4. SHOW CORRESPONDING\t5. SAVE TO BINARY FILE\t6. READ BINARY FILE\t7. QUIT\nEnter Number: ");
+        scanf("%d", &command); //User inputs 1-7
 
         switch (command)
         {
@@ -106,13 +106,16 @@ int main(int argc, char *argv[])
             case 4: //Show the corresponding list
                 show_letter();
                 break;
-            case 5:
+            case 5: //Save to binary file
+                save_binary(argv[2]);
+                break;
+            case 6: //Read from binary file
                 //read_binary(argv[2]);
                 break;
-            case 6: //Quit
+            case 7: //Quit
                 boolean = 0;
                 break;
-            default: //If any number other than 1-6 is inputted
+            default: //If any number other than 1-7 is inputted
                 printf("Not a valid option. Try again.\n");
                 break;
         }
