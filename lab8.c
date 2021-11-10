@@ -434,8 +434,14 @@ void read_binary(char *name) //Read Binary File function
 void save_binary(char *name) //Save Binary File function
 {
     FILE *fp; //File pointer
-    NODE *p[SIZE];
-    int letterIndex, ret;
+    NODE *p;
+    int i;
+
+    if ((p = (NODE *)malloc(sizeof(NODE))) == NULL)
+    {
+        printf("Malloc error...\n"); //Error given if pointers not allocated successfully
+        exit(1);
+    }
 
     fp = fopen(name, "wb"); //Writing to the file (overwriting)
 
@@ -445,11 +451,14 @@ void save_binary(char *name) //Save Binary File function
        return; 
     }
 
-    if ((ret = fwrite(p, sizeof(NODE *), SIZE, fp)) > 0)
+    for (i = 0; i < SIZE; ++i)
     {
-        for (letterIndex = 0; letterIndex < ret; ++letterIndex)
+        p = lists[i];
+        
+        while (p != NULL)
         {
-            p[letterIndex] = lists[letterIndex];
+            fwrite(p, sizeof(NODE), 1, fp);
+            p = p->next;
         }
     }
 
