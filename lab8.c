@@ -413,8 +413,7 @@ void save_file(char *name) //Save File function
 void read_binary(char *name) //Read Binary File function
 {
     FILE *fp; //File pointer
-    int ret;
-    NODE *p;
+    NODE *p; //temporary node to hold each node from file
 
     if ((p = (NODE *)malloc(sizeof(NODE))) == NULL)
     {
@@ -427,8 +426,8 @@ void read_binary(char *name) //Read Binary File function
     if (fp == NULL) //The file does not exist and will be created upon save
         return;
 
-    while ((ret = fread(p, sizeof(NODE), 1, fp)) > 0)
-        printf("%s\t%s\n", p->name, p->number); //Prints the name and number of one node
+    while (fread(p, sizeof(NODE), 1, fp) > 0) //Reads each node that was saved
+        printf("%s\t%s\n", p->name, p->number); //Prints the name and number of the temporary node
 
     fclose(fp); //Closes file pointer
 }
@@ -436,7 +435,7 @@ void read_binary(char *name) //Read Binary File function
 void save_binary(char *name) //Save Binary File function
 {
     FILE *fp; //File pointer
-    NODE *p;
+    NODE *p; //temporary node to hold each node from file
     int i;
 
     if ((p = (NODE *)malloc(sizeof(NODE))) == NULL)
