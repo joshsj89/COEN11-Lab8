@@ -254,14 +254,14 @@ void characterDelete(char inputtedName[20]) //Checks if name is in the phonebook
         return;
     }
     
-    if (temp->next == NULL && strcmp(temp->name, inputtedName) == 0) //When the name to be deleted is the head and tail node
+    if (temp->next == NULL && strcasecmp(temp->name, inputtedName) == 0) //When the name to be deleted is the head and tail node
     {
         lists[letterIndex] = listsTail[letterIndex] = NULL;
         printf("%s has been deleted.\n", temp->name);
         return;
     }
     
-    else if (strcmp(temp->name, inputtedName) == 0) //When the name to be deleted is in the head node
+    else if (strcasecmp(temp->name, inputtedName) == 0) //When the name to be deleted is in the head node
     {
         lists[letterIndex] = temp->next; //Makes what the head pointed to the new head
         lists[letterIndex]->prev = NULL;
@@ -269,7 +269,7 @@ void characterDelete(char inputtedName[20]) //Checks if name is in the phonebook
         return;
     }
 
-    while (temp != NULL && (strcmp(temp->name, inputtedName) != 0)) //Continues to the next node until a name matches or until the end of the list
+    while (temp != NULL && (strcasecmp(temp->name, inputtedName) != 0)) //Continues to the next node until a name matches or until the end of the list
         temp = temp->next; //Moves a pointer down the list
 
     if (temp == NULL) //If the end of the list is reached without finding a name match
