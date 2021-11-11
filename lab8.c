@@ -110,7 +110,7 @@ int main(int argc, char *argv[])
                 save_binary(argv[2]);
                 break;
             case 6: //Read from binary file
-                //read_binary(argv[2]);
+                read_binary(argv[2]);
                 break;
             case 7: //Quit
                 boolean = 0;
@@ -409,28 +409,30 @@ void save_file(char *name) //Save File function
 
     fclose(fp); //Closes file pointer
 }
-/*
+
 void read_binary(char *name) //Read Binary File function
 {
     FILE *fp; //File pointer
     int ret;
-    NODE *buffer[100];
+    NODE *p;
 
+    if ((p = (NODE *)malloc(sizeof(NODE))) == NULL)
+    {
+        printf("Malloc error...\n"); //Error given if pointers not allocated successfully
+        exit(1);
+    }
+    
     fp = fopen(name, "rb"); //Reading the file
 
     if (fp == NULL) //The file does not exist and will be created upon save
         return;
 
-    while ((ret = fread(*buffer, sizeof(NODE *), 100, fp)) > 0)
-    {
-        int i;
-        for (i = 0; i < ret; ++i)
-
-    }
+    while ((ret = fread(p, sizeof(NODE), 1, fp)) > 0)
+        printf("%s\t%s\n", p->name, p->number); //Prints the name and number of one node
 
     fclose(fp); //Closes file pointer
 }
-*/
+
 void save_binary(char *name) //Save Binary File function
 {
     FILE *fp; //File pointer
