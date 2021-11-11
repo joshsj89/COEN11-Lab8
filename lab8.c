@@ -400,10 +400,10 @@ void save_file(char *name) //Save File function
     {
         p = lists[letterIndex];
 
-        while (p != NULL)
+        while (p != NULL) //While node is not null
         {
-            fprintf(fp, "%s\t%s\n", p->name, p->number);
-            p = p->next;
+            fprintf(fp, "%s\t%s\n", p->name, p->number); //Writes name and number from the node into the file
+            p = p->next; //Contiues to the next node
         }
     }
 
@@ -436,7 +436,6 @@ void save_binary(char *name) //Save Binary File function
 {
     FILE *fp; //File pointer
     NODE *p; //temporary node to hold each node from file
-    int i;
 
     if ((p = (NODE *)malloc(sizeof(NODE))) == NULL)
     {
@@ -452,14 +451,15 @@ void save_binary(char *name) //Save Binary File function
        return; 
     }
 
-    for (i = 0; i < SIZE; ++i)
+    int letterIndex;
+    for (letterIndex = 0; letterIndex < SIZE; ++letterIndex)
     {
-        p = lists[i];
+        p = lists[letterIndex];
         
-        while (p != NULL)
+        while (p != NULL) //While node is not null
         {
-            fwrite(p, sizeof(NODE), 1, fp);
-            p = p->next;
+            fwrite(p, sizeof(NODE), 1, fp); //Writes one node to the file
+            p = p->next; //Contiues to the next node
         }
     }
 
