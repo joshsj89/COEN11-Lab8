@@ -6,6 +6,7 @@
 *
 *****************************************************************
 */
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -86,9 +87,9 @@ int main(int argc, char *argv[])
         read_file(argv[1]);
 
     int command;
-    int boolean = 1;
+    bool run = true;
 
-    while(boolean)
+    while(run)
     {
         printf("Options: 1. ADD PEOPLE\t2. DELETE PEOPLE\t3. SHOW ALL\t4. SHOW CORRESPONDING\t5. SAVE TO BINARY FILE\t6. READ BINARY FILE\t7. QUIT\nEnter Number: ");
         scanf("%d", &command); //User inputs 1-7
@@ -114,7 +115,7 @@ int main(int argc, char *argv[])
                 read_binary(argv[2]);
                 break;
             case 7: //Quit
-                boolean = 0;
+                run = false;
                 break;
             default: //If any number other than 1-7 is inputted
                 printf("Not a valid option. Try again.\n");
